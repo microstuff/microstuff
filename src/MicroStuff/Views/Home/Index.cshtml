@@ -1,0 +1,40 @@
+@model MicroStuff.ViewModels.GridViewModel
+    
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-md-5 col-md-offset-2">
+            <h3>Alfa</h3>
+        </div>
+        <div class="col-md-5">
+            <h3>Beta</h3>
+        </div>
+
+    </div>
+    
+    @foreach (var row in Model.Rows)
+    {
+        <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-2">
+                    @row.Slot.Start.ToString("hh\\:mm") - @row.Slot.End.ToString("hh\\:mm")
+                </div>
+                
+                @foreach (var session in row.Sessions)
+                {
+                    <div class="col-md-5">
+                        <strong>@session.Title</strong>
+                        <br>
+                        @session.Speaker.Name
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    
+</div>
