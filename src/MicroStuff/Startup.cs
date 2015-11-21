@@ -1,9 +1,3 @@
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +27,7 @@ namespace MicroStuff
             services.AddMvc();
             
             services.AddSingleton<ISessions, Sessions>();
+            services.AddInstance<IConsulClient>(new ConsulClient(Configuration["CONSUL"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

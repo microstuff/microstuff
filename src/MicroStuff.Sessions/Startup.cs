@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
@@ -34,14 +35,20 @@ namespace MicroStuff.Sessions
             services.AddSingleton<IRooms, Rooms>();
             services.AddSingleton<ISpeakers, Speakers>();
             services.AddSingleton<ISessions, Data.Sessions>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            Console.WriteLine(string.Join(",", Dns.GetHostEntry(string.Empty).AddressList.Select(ip => ip.ToString())));
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var consul = Configuration["CONSUL"];
+            if (!string.IsNullOrWhiteSpace(consul))
+            {
+                new ConsulClient(consul).Register("sessions", 5000).Wait();
+            }
 
             app.UseIISPlatformHandler();
 
