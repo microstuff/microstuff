@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using MicroStuff.Data;
@@ -17,9 +18,9 @@ namespace MicroStuff.Controllers
             _logger = loggerFactory.CreateLogger<HomeController>();
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new GridViewModel(_sessions.Get());
+            var viewModel = new GridViewModel(await _sessions.Get());
             return View(viewModel);
         }
 
