@@ -20,7 +20,6 @@ namespace MicroStuff.Controllers
         public IActionResult Index()
         {
             var viewModel = new GridViewModel(_sessions.Get());
-            _logger.LogInformation($"Grid has {viewModel.Rows[0].Sessions.Length} rows");
             return View(viewModel);
         }
 
