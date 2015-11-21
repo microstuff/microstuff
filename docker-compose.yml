@@ -1,0 +1,9 @@
+app:
+  image: local/microstuff
+  links:
+    - sessions
+  ports:
+    - "5000:5000"
+
+sessions:
+  image: local/microstuff-sessions
