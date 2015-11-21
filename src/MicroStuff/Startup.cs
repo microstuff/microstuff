@@ -32,9 +32,6 @@ namespace MicroStuff
             // Add framework services.
             services.AddMvc();
             
-            services.AddSingleton<ISlots, Slots>();
-            services.AddSingleton<IRooms, Rooms>();
-            services.AddSingleton<ISpeakers, Speakers>();
             services.AddSingleton<ISessions, Sessions>();
         }
 
