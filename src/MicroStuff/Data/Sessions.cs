@@ -23,7 +23,7 @@ namespace MicroStuff.Data
         {
             _client = new HttpClient();
             
-            var sessionsTcp = Startup.Configuration[""];
+            var sessionsTcp = Startup.Configuration["SESSIONS_PORT"];
             if (!string.IsNullOrWhiteSpace(sessionsTcp))
             {
                 _sessionsUri = $"http{sessionsTcp.Substring(3)}/sessions/";
