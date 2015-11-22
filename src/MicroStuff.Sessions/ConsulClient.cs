@@ -41,7 +41,8 @@ namespace MicroStuff.Sessions
         
         private static string MakeRegisterEntry(string name, string ip, int port)
         {
-            return $"{{ \"Name\": \"{name}\", \"Address\": \"{ip}\", \"Port\": {port} }}";
+            var check = $"{{ \"HTTP\": \"http://{ip}:{port}/health\", \"Interval\": \"5s\" }}";
+            return $"{{ \"Name\": \"{name}\", \"Address\": \"{ip}\", \"Port\": {port}, \"Check\": {check} }}";
         }
     }
 }
