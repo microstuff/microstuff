@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -29,7 +27,8 @@ namespace MicroStuff.Sessions
                 int retries = 3;
                 while (retries-- > 0)
                 {
-                    var res = await client.PostAsync(_consul + "/v1/agent/service/register", new StringContent(MakeRegisterEntry(name, ip, port)));
+                    var res = await client.PostAsync(_consul + "/v1/agent/service/register", 
+                        new StringContent(MakeRegisterEntry(name, ip, port)));
                     if (res.StatusCode == HttpStatusCode.OK)
                     {
                         return true;

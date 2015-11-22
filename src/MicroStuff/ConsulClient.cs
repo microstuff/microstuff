@@ -44,11 +44,6 @@ namespace MicroStuff
             }
             return null;
         }
-        
-        private static string MakeRegisterEntry(string name, string ip, int port)
-        {
-            return $"{{ \"Name\": \"{name}\", \"Address\": \"{ip}\", \"Port\": {port} }}";
-        }
     }
     
     public class ConsulService

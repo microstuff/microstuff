@@ -1,14 +1,14 @@
 consul:
   image: gliderlabs/consul-server
   container_name: consul
-  net: "sandbox"
+  net: "stuffnet"
   command: -bootstrap
   ports:
     - "8500:8500"
 
 app:
   image: local/microstuff
-  net: "sandbox"
+  net: "stuffnet"
   environment:
     CONSUL: http://consul:8500
   ports:
@@ -16,6 +16,6 @@ app:
 
 sessions:
   image: local/microstuff-sessions
-  net: "sandbox"
+  net: "stuffnet"
   environment:
     CONSUL: http://consul:8500
