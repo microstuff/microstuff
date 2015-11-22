@@ -23,15 +23,7 @@ namespace MicroStuff.Data
         {
             _client = new HttpClient();
             
-            var sessionsTcp = Startup.Configuration["SESSIONS_PORT"];
-            if (!string.IsNullOrWhiteSpace(sessionsTcp))
-            {
-                _sessionsUri = $"http{sessionsTcp.Substring(3)}/sessions/";
-            }
-            else
-            {
-                _sessionsUri = "http://localhost:5001/sessions/";
-            }
+            _sessionsUri = "http://sessions:5000/sessions/";
         }
 
         public async Task<IList<Session>> Get()

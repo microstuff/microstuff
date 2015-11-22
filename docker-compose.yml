@@ -1,9 +1,10 @@
 app:
   image: local/microstuff
-  links:
-    - sessions
+  net: stuffnet
   ports:
     - "5000:5000"
 
 sessions:
   image: local/microstuff-sessions
+  net: stuffnet
+  container_name: sessions
